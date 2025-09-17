@@ -1,15 +1,22 @@
 package com.anjan.employee_management.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.PastOrPresent;
+import com.anjan.employee_management.entity.EmployeeEntity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.PrePersist;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class EmployeeRequestDTO {
 
-    private Long employeeId;
+    private String employeeId;
+
+    @PrePersist
+    public void generateEmployeeId(){
+        this.employeeId = "emp_A"+ UUID.randomUUID().toString().substring(0,4).toUpperCase();
+    }
 
 
     @NotBlank(message = "First name is must not empty, null and blank")
@@ -23,8 +30,7 @@ public class EmployeeRequestDTO {
     @Email(message = "Email must be valid")
     @NotBlank(message = "Not blank")
     private String email;
-//    @Pattern(regexp ="^[6-9]\d{9}$",message = "")
-
+    @Pattern(regexp = "^\\+91[6-9]\\d{9}$", message = "Phone number must start with +91 and be 10 digits long")
     private String phoneNumber;
 
     // job/  work
@@ -35,11 +41,13 @@ public class EmployeeRequestDTO {
     @Past(message = "Date should be past")
     private LocalDate dateOfJoining;
     @NotBlank
-    private String employmentType;
-    @NotBlank
-    private String status;
+    private String employmentType;  // need to make this also as enum
+    @Enumerated(EnumType.STRING)
+    private EmployeeEntity.EmployeeStatus status= EmployeeEntity.EmployeeStatus.ACTIVE;
 
     // salary and compensations
+    @NotNull(message = "salary must not be null")
+    @Positive(message = "salary must be greater thank zero")
     private Double salary;
 
 //    // employee Address
@@ -54,11 +62,11 @@ public class EmployeeRequestDTO {
 
     // System / Tracking fields
 
-    @PastOrPresent
-    private LocalDate createdBy;
+    @NotBlank
+    private String createdBy;
 
-    @PastOrPresent
-    private LocalDate updatedBy;
+    @NotBlank
+    private String updatedBy;
 
 
     @PastOrPresent
@@ -67,12 +75,11 @@ public class EmployeeRequestDTO {
     private LocalDate updatedAt;
 
     // constructor
-
-
     public EmployeeRequestDTO() {
     }
 
-    public EmployeeRequestDTO(Long employeeId, String firstName, String lastName, LocalDate dateOfBirth, String gender, String email, String phoneNumber, String jobTitle, String department, LocalDate dateOfJoining, String employmentType, String status, Double salary, LocalDate createdBy, LocalDate updatedBy, LocalDate createdAt, LocalDate updatedAt) {
+    // parameterized constructor
+    public EmployeeRequestDTO(String employeeId, String firstName, String lastName, LocalDate dateOfBirth, String gender, String email, String phoneNumber, String jobTitle, String department, LocalDate dateOfJoining, String employmentType, EmployeeEntity.EmployeeStatus status, Double salary, String createdBy, String updatedBy, LocalDate createdAt, LocalDate updatedAt) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -93,11 +100,11 @@ public class EmployeeRequestDTO {
     }
 
     // getters and setters
-    public Long getEmployeeId() {
+    public String getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(Long employeeId) {
+    public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -181,11 +188,11 @@ public class EmployeeRequestDTO {
         this.employmentType = employmentType;
     }
 
-    public String getStatus() {
+    public EmployeeEntity.EmployeeStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(EmployeeEntity.EmployeeStatus status) {
         this.status = status;
     }
 
@@ -197,19 +204,19 @@ public class EmployeeRequestDTO {
         this.salary = salary;
     }
 
-    public LocalDate getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(LocalDate createdBy) {
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
-    public LocalDate getUpdatedBy() {
+    public String getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(LocalDate updatedBy) {
+    public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
     }
 
@@ -228,4 +235,11 @@ public class EmployeeRequestDTO {
     public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    public enum EmployeeStatus{
+        ACTIVE, INACTIVE
+    }
+
+
+
 }

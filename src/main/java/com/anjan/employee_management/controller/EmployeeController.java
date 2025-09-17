@@ -1,5 +1,7 @@
 package com.anjan.employee_management.controller;
 
+import com.anjan.employee_management.dto.EmployeeRequestDTO;
+import com.anjan.employee_management.dto.EmployeeResponseDTO;
 import com.anjan.employee_management.entity.EmployeeEntity;
 import com.anjan.employee_management.service.EmployeeService;
 import jakarta.validation.Valid;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/api/employee")
 public class EmployeeController {
 
     @Autowired
@@ -18,43 +20,42 @@ public class EmployeeController {
 
     // add an employee
     @PostMapping
-    public EmployeeEntity entryAnEmployee(@Valid @RequestBody EmployeeEntity employee){
-        return service.entry(employee);
+    public EmployeeResponseDTO addAnEmployee(@Valid @RequestBody EmployeeRequestDTO employeeRequest){
+        return service.addEmployee(employeeRequest);
     }
     // delete Employee   no permanent deletion status is inactive
     @DeleteMapping("/{employeeId}")
-    public ResponseEntity<EmployeeEntity> deleteEmployee(@PathVariable String employeeId){
-        EmployeeEntity updatedEmployee = service.deleteEmployee(employeeId);
-        return ResponseEntity.ok(updatedEmployee);
+    public ResponseEntity<EmployeeResponseDTO> deleteEmployee(@PathVariable String employeeId){
+        EmployeeResponseDTO deletedEmployee = service.deleteEmployee(employeeId);
+        return ResponseEntity.ok(deletedEmployee);
     }
 
     // get all employees list
     @GetMapping
-    public ResponseEntity<List<EmployeeEntity>> getAllEmployees(){
+    public ResponseEntity<List<EmployeeResponseDTO>> getAllEmployees(){
         return ResponseEntity.ok(service.getAllEmployees());
     }
 
     // Smart search & Filters
     @GetMapping("department/{department}")
-    public ResponseEntity<List<EmployeeEntity>> getEmployeesByDepartment(@PathVariable String department){
+    public ResponseEntity<List<EmployeeResponseDTO>> getEmployeesByDepartment(@PathVariable String department){
         return ResponseEntity.ok(service.getEmployeesByDepartment(department));
     }
 
     @GetMapping("jobtitle/{jobTitle}")
-    public ResponseEntity<List<EmployeeEntity>> getEmployeesByJobTitle(@PathVariable String jobTitle){
+    public ResponseEntity<List<EmployeeResponseDTO>> getEmployeesByJobTitle(@PathVariable String jobTitle){
         return ResponseEntity.ok(service.getEmployeesByJobTitle(jobTitle));
     }
 
     // get employee details by id,name
     @GetMapping("/{employeeId}")
-    public ResponseEntity<EmployeeEntity> getEmployeeById(@PathVariable String employeeId){
+    public ResponseEntity<EmployeeResponseDTO> getEmployeeById(@PathVariable String employeeId){
         return ResponseEntity.ok(service.getEmployeeById(employeeId));
     }
 
     //update employee details like status, salary, job roles, etc
     @PutMapping("/{employeeId}")
-    public ResponseEntity<EmployeeEntity> updateEmployee(@PathVariable String employeeId,@Valid @RequestBody EmployeeEntity emp){
-        EmployeeEntity updatedEmployee = service.updateEmployee(employeeId,emp);
-        return ResponseEntity.ok(updatedEmployee);
+    public ResponseEntity<EmployeeResponseDTO> updateEmployee(@PathVariable String employeeId,@Valid @RequestBody EmployeeRequestDTO emp){
+        return ResponseEntity.ok(service.updateEmployee(employeeId,emp));
     }
 }
