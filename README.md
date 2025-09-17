@@ -34,15 +34,25 @@ Custom exception handling ensures clean and meaningful error responses.
 ## 📂 Project Structure
 
 employee-management/
+
 ┣ 📂 src/main/java/com/anjan/employee_management
+
 ┃ ┣ 📂 controller # REST Controllers
+
 ┃ ┣ 📂 service # Business Logic
+
 ┃ ┣ 📂 repository # JPA Repositories
+
 ┃ ┣ 📂 entity # JPA Entities
+
 ┃ ┣ 📂 dto # Data Transfer Objects
+
 ┃ ┗ 📂 exception # Custom Exceptions + Handler
+
 ┣ 📂 src/main/resources
+
 ┃ ┗ application.properties
+
 ┗ pom.xml
 
 | Method | Endpoint                                  | Description                 |
