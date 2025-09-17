@@ -1,4 +1,5 @@
 🚀 Employee Management System (Spring Boot)
+
 📌 About the Project
 The **Employee Management System** is a Spring Boot application built for managing employee records.  
 It provides REST APIs for CRUD operations and supports advanced filtering by department, job title, and employee ID.  
@@ -7,6 +8,7 @@ Custom exception handling ensures clean and meaningful error responses.
 ---
 
 ✨ Features
+
 1.➕ **Add** a new employee  
 2.🔄 **Update** existing employee details  
 3.📋 **Get all** employees  
@@ -20,6 +22,7 @@ Custom exception handling ensures clean and meaningful error responses.
 ---
 
 🛠 Tech Stack
+
 **Backend:** Java 17, Spring Boot 3.x  
 **Database:** MySQL  
 **Build Tool:** Maven  
@@ -29,6 +32,7 @@ Custom exception handling ensures clean and meaningful error responses.
 ---
 
 ## 📂 Project Structure
+
 employee-management/
 ┣ 📂 src/main/java/com/anjan/employee_management
 ┃ ┣ 📂 controller # REST Controllers
@@ -53,5 +57,6 @@ employee-management/
 
 
 👨‍💻 Author
+
 Anjan Kumar
 
