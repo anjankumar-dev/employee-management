@@ -11,7 +11,4 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, String
     public List<EmployeeEntity> findByDepartment(String department);
     public List<EmployeeEntity> findByJobTitle(String jobTitle);
 
-    //public EmployeeEntity findById(String employeeId);
-
-
 }

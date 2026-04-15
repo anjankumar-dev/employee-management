@@ -37,11 +37,13 @@ public class EmployeeController {
     }
 
     // Smart search & Filters
+    // get employees by department
     @GetMapping("department/{department}")
     public ResponseEntity<List<EmployeeResponseDTO>> getEmployeesByDepartment(@PathVariable String department){
         return ResponseEntity.ok(service.getEmployeesByDepartment(department));
     }
 
+    // get employees by job Title
     @GetMapping("jobtitle/{jobTitle}")
     public ResponseEntity<List<EmployeeResponseDTO>> getEmployeesByJobTitle(@PathVariable String jobTitle){
         return ResponseEntity.ok(service.getEmployeesByJobTitle(jobTitle));
