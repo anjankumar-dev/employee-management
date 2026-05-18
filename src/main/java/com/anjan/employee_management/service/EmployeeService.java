@@ -15,11 +15,15 @@
     @Service
     public class EmployeeService {
 
-        @Autowired
-        private EmployeeRepository repo;
+        private final EmployeeRepository repo;
 
-        @Autowired
-        private ModelMapper modelMapper;
+        private final ModelMapper modelMapper;
+
+        public EmployeeService(EmployeeRepository repo, ModelMapper modelMapper){
+            this.repo = repo;
+            this.modelMapper = modelMapper;
+        }
+
 
         public EmployeeResponseDTO addEmployee(EmployeeRequestDTO requestDTO) {
             // DTO → Entity

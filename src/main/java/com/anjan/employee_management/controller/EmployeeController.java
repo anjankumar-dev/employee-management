@@ -15,8 +15,11 @@ import java.util.List;
 @RequestMapping("/api/employee")
 public class EmployeeController {
 
-    @Autowired
-    private EmployeeService service;
+    private final EmployeeService service;
+
+    public EmployeeController(EmployeeService employeeService){
+        this.service = employeeService;
+    }
 
     // add an employee
     @PostMapping
