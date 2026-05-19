@@ -34,9 +34,9 @@ Custom exception handling ensures clean and meaningful error responses.
 📸 API Endpoints
 
 | Method | Endpoint                                  | Description                 |
-| ------ | ----------------------------------------- | --------------------------- |
+|--------| ----------------------------------------- | --------------------------- |
 | POST   | `/api/employee`                           | Add new employee            |
-| PUT    | `/api/employees/{employeeId}`             | Update employee details     |
+| PATCH  | `/api/employees/{employeeId}`             | Update employee details     |
 | GET    | `/api/employee`                           | Get all employees           |
 | GET    | `/api/employee/{employeeId}`              | Get employee by ID          |
 | GET    | `/api/employee/department/{department}`   | Get employees by Department |
