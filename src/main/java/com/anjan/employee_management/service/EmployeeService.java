@@ -77,7 +77,66 @@
         //update employee
         public EmployeeResponseDTO updateEmployee(String employeeId, EmployeeRequestDTO updatedEmployee) {
             EmployeeEntity employee = repo.findById(employeeId).orElseThrow(()->new EmployeeNotFoundException("employee Not found with id: "+employeeId));
-            employee.setEmail(updatedEmployee.getEmail());
+
+            // firstname
+            if(updatedEmployee.getFirstName() != null) {
+                employee.setFirstName(updatedEmployee.getFirstName());
+            }
+
+            // updating Lastname
+            if(updatedEmployee.getLastName() != null) {
+                employee.setLastName(updatedEmployee.getLastName());
+            }
+
+            // updating DOB
+            if(updatedEmployee.getDateOfBirth() != null) {
+                employee.setDateOfBirth(updatedEmployee.getDateOfBirth());
+            }
+
+            // updating Gender
+            if(updatedEmployee.getGender() != null) {
+                employee.setGender(updatedEmployee.getGender());
+            }
+
+            // updating email
+            if(updatedEmployee.getEmail() != null) {
+                employee.setEmail(updatedEmployee.getEmail());
+            }
+
+            // updating phone number
+            if(updatedEmployee.getPhoneNumber() != null) {
+                employee.setPhoneNumber(updatedEmployee.getPhoneNumber());
+            }
+
+            // job title
+            if(updatedEmployee.getJobTitle() != null) {
+                employee.setJobTitle(updatedEmployee.getJobTitle());
+            }
+
+            // updating  department
+            if(updatedEmployee.getDepartment() != null) {
+                employee.setDepartment(updatedEmployee.getDepartment());
+            }
+
+            // updating employment type
+            if(updatedEmployee.getEmploymentType() != null) {
+                employee.setEmploymentType(updatedEmployee.getEmploymentType());
+            }
+
+            // updating status
+            if(updatedEmployee.getStatus() != null) {
+                employee.setStatus(updatedEmployee.getStatus());
+            }
+
+            // updating salary
+            if(updatedEmployee.getSalary() != null) {
+                employee.setSalary(updatedEmployee.getSalary());
+            }
+
+            // updatedBy and updatedAt
+            employee.setUpdatedBy(updatedEmployee.getUpdatedBy());
+            employee.setUpdatedAt(updatedEmployee.getUpdatedAt());
+
 
             EmployeeEntity saved = repo.save(employee);
             return modelMapper.map(saved,EmployeeResponseDTO.class);

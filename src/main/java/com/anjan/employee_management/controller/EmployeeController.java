@@ -59,7 +59,7 @@ public class EmployeeController {
     }
 
     //update employee details like status, salary, job roles, etc
-    @PutMapping("/{employeeId}")
+    @PatchMapping("/{employeeId}")
     public ResponseEntity<EmployeeResponseDTO> updateEmployee(@PathVariable String employeeId,@Valid @RequestBody EmployeeRequestDTO emp){
         return ResponseEntity.ok(service.updateEmployee(employeeId,emp));
     }
