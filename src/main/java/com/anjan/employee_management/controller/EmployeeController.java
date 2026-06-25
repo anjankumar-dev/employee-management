@@ -2,10 +2,8 @@ package com.anjan.employee_management.controller;
 
 import com.anjan.employee_management.dto.EmployeeRequestDTO;
 import com.anjan.employee_management.dto.EmployeeResponseDTO;
-import com.anjan.employee_management.entity.EmployeeEntity;
 import com.anjan.employee_management.service.EmployeeService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
