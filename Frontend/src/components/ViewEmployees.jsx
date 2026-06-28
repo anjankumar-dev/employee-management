@@ -12,6 +12,15 @@ function ViewEmployees(){
         .catch((error) => console.error(error));
     },[])
 
+    const deleteEmployee = (employeeId) => {
+        axios.delete(`http://localhost:8080/api/employee/${employeeId}`)
+        .then(()=>{
+            window.confirm(`Are you sure! to delete employee with id ${employeeId}`);
+        }).catch((err)=>{
+            alert(err);
+        })
+    }
+
     return(
         <>
         <div className="view-container">
@@ -45,7 +54,9 @@ function ViewEmployees(){
                     <td>
                         <div className="btn-group">
                             <button className="edit-btn">Edit</button>
-                            <button className="delete-btn">Delete</button>
+                            <button className="delete-btn" onClick={() => 
+                                deleteEmployee(emp.employeeId)
+                            }>Delete</button>
                         </div>
                     </td>
                 </tr>))
