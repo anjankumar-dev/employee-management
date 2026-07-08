@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import "./viewemployees.css"
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import AddEmployee from "./AddEmployee";
 
 
 function ViewEmployees(){
@@ -19,6 +22,12 @@ function ViewEmployees(){
         }).catch((err)=>{
             alert(err);
         })
+    }
+
+    const navigator = useNavigate();
+    const editEmployee = (employeeId) => {
+        console.log(`edit button clicked for : ${employeeId}`);
+        navigator("/addEmployee");
     }
 
     return(
@@ -53,7 +62,9 @@ function ViewEmployees(){
                     <td>{emp.status}</td>
                     <td>
                         <div className="btn-group">
-                            <button className="edit-btn">Edit</button>
+                            <button className="edit-btn" onClick={() =>{
+                                editEmployee(emp.employeeId)
+                            }}>Edit</button>
                             <button className="delete-btn" onClick={() => 
                                 deleteEmployee(emp.employeeId)
                             }>Delete</button>

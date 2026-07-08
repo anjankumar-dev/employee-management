@@ -1,0 +1,37 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+
+/* Background */
+.home-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+.btn-container{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr, 1fr;
+    gap: 8px;
+}
+.btn-container .btn{
+    padding: 10px;
+    border-radius: 16px;
+    border: none;
+    font-size: 16px;
+    color: #764ba2;
+
+}
+
+.btn-container .btn:hover{
+    background: #667eea;
+    transition: all 0.5s;
+    color:white;
+    cursor: pointer;
+}
