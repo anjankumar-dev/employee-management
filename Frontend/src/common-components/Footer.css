@@ -1,0 +1,15 @@
+footer {
+    min-height: 10vh;
+  /* padding: 28px 56px; */
+  border-top: 1px soli gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+.footer-left, .footer-right {
+  font-size: 16px;
+  color: gainsboro;
+}

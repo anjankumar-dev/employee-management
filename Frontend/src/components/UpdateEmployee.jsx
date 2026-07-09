@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddEmployee.css"
 import axios from "axios";
 import Header from "../common-components/Header";
 import Footer from "../common-components/Footer";
+import { useParams } from "react-router-dom";
 
-function AddEmployee(){
+export default function UpdateEmployee(){
 
     const [employee, setEmployee] = useState({
         firstName: "",
@@ -27,7 +28,18 @@ function AddEmployee(){
 
     const [employees, setEmployees] = useState([]);
 
+    const {employeeId} = useParams();
+
+    console.log(`employeeId ${employeeId}`);
+    useEffect(()=>{
+        axios.get(`http://localhost:8080/api/employee/${employeeId}`).
+        then((res)=>res.json())
+        .then((data) => setEmployees(data))
+        .catch((error) => console.error(error))
+    },[])
+
     const handleChange = (e) => {
+
         setEmployee({
         ...employee,
         [e.target.name]: e.target.value,
@@ -38,9 +50,9 @@ function AddEmployee(){
         e.preventDefault();
         console.log(employee);
     
-        axios.post(
-            "http://localhost:8080/api/employee",
-            employee
+        axios.patch(
+            `http://localhost:8080/api/employee/${
+            employeeId}`,employee
         )
         .then((response) => response.json())
         .then((data) => setEmployees(data))
@@ -48,6 +60,8 @@ function AddEmployee(){
             console.error(error);
             alert(error.response.data)
         })
+
+        console.log("submitted for update")
     };
 
 
@@ -192,5 +206,3 @@ function AddEmployee(){
         </>
     );
 }
-
-export default AddEmployee;

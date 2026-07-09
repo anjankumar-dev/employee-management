@@ -5,6 +5,7 @@ import ViewEmployee from './components/ViewEmployees';
 import { Route, Routes } from 'react-router-dom';
 import ViewEmployees from './components/ViewEmployees';
 import Home from './components/Home';
+import UpdateEmployee from './components/UpdateEmployee';
 
 
 
@@ -17,6 +18,7 @@ function App() {
         <Route index Component={Home}/>
         <Route path='/addEmployee' Component={AddEmployee}/>
         <Route path='/viewEmployees' Component={ViewEmployees}/>
+        <Route path='/editEmployee/:employeeId' Component={UpdateEmployee}/>
       </Routes>
       
     </>

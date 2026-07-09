@@ -1,6 +1,8 @@
 import React from "react";
 import './Home.css'
 import { useNavigate } from "react-router-dom";
+import Header from "../common-components/Header";
+import Footer from "../common-components/Footer";
 
 export default function Home(){
 
@@ -15,7 +17,9 @@ export default function Home(){
     }
 
     return(
+
         <>
+            <Header/>
             <div className="home-container">
                 <h1>Employee Management System</h1>
                 <div className="btn-container">
@@ -23,6 +27,8 @@ export default function Home(){
                     <button className="btn" onClick={() => goToViewEmployees() }>View Employees</button>
                 </div>
             </div>
+
+            <Footer/>
         </>
     )
 }

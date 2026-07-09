@@ -3,6 +3,8 @@ import "./viewemployees.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AddEmployee from "./AddEmployee";
+import Footer from "../common-components/Footer";
+import Header from "../common-components/Header";
 
 
 function ViewEmployees(){
@@ -24,14 +26,18 @@ function ViewEmployees(){
         })
     }
 
-    const navigator = useNavigate();
+    const navigate = useNavigate();
+
     const editEmployee = (employeeId) => {
-        console.log(`edit button clicked for : ${employeeId}`);
-        navigator("/addEmployee");
+        alert(`edit button was clicked for ${employeeId}`);
+        navigate(`/editEmployee/${employeeId}`);
     }
 
     return(
         <>
+
+        <Header/>
+
         <div className="view-container">
             <div><h1>Employees Data</h1></div>
             <div className="view-card">
@@ -76,6 +82,8 @@ function ViewEmployees(){
             </table>
             </div>
         </div>
+
+        <Footer/>
         </>
     )
 }
