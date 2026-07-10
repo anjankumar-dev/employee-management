@@ -1,5 +1,6 @@
 package com.anjan.employee_management.controller;
 
+import com.anjan.employee_management.dto.EditResponseDTO;
 import com.anjan.employee_management.dto.EmployeeRequestDTO;
 import com.anjan.employee_management.dto.EmployeeResponseDTO;
 import com.anjan.employee_management.service.EmployeeService;
@@ -57,9 +58,16 @@ public class EmployeeController {
         return ResponseEntity.ok(service.getEmployeeById(employeeId));
     }
 
+    //get employee details by id for updating
+    @GetMapping("/edit/{employeeId}")
+    public ResponseEntity<EditResponseDTO> getEmployeeByIdForEdit(@PathVariable String employeeId){
+        return ResponseEntity.ok(service.getEmployeeByIdForEdit(employeeId));
+    }
+
     //update employee details like status, salary, job roles, etc
     @PatchMapping("/{employeeId}")
     public ResponseEntity<EmployeeResponseDTO> updateEmployee(@PathVariable String employeeId,@Valid @RequestBody EmployeeRequestDTO emp){
         return ResponseEntity.ok(service.updateEmployee(employeeId,emp));
     }
 }
+

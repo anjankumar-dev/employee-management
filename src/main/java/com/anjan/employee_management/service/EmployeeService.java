@@ -1,5 +1,6 @@
     package com.anjan.employee_management.service;
 
+    import com.anjan.employee_management.dto.EditResponseDTO;
     import com.anjan.employee_management.dto.EmployeeRequestDTO;
     import com.anjan.employee_management.dto.EmployeeResponseDTO;
     import com.anjan.employee_management.entity.EmployeeEntity;
@@ -66,10 +67,15 @@
             return employees.stream().map(employee -> modelMapper.map(employee,EmployeeResponseDTO.class)).toList();
         }
 
-        // get employee details with Id
+        // get employee details with employeeId
         public EmployeeResponseDTO getEmployeeById(String employeeId) {
             EmployeeEntity emp = repo.findById(employeeId).orElseThrow(()->new EmployeeNotFoundException("employee Not found with id: "+employeeId));
             return modelMapper.map(emp,EmployeeResponseDTO.class);
+        }
+
+        public EditResponseDTO getEmployeeByIdForEdit(String employeeId) {
+            EmployeeEntity emp = repo.findById(employeeId).orElseThrow(() -> new EmployeeNotFoundException("employee Not found with id: "+employeeId));
+            return modelMapper.map(emp,EditResponseDTO.class);
         }
 
         //update employee
@@ -147,4 +153,6 @@
             EmployeeEntity saved = repo.save(emp);
             return modelMapper.map(saved,EmployeeResponseDTO.class);
         }
+
+
     }

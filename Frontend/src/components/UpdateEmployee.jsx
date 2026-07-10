@@ -32,9 +32,8 @@ export default function UpdateEmployee(){
 
     console.log(`employeeId ${employeeId}`);
     useEffect(()=>{
-        axios.get(`http://localhost:8080/api/employee/${employeeId}`).
-        then((res)=>res.json())
-        .then((data) => setEmployees(data))
+        axios.get(`http://localhost:8080/api/employee/edit/${employeeId}`)
+        .then((res)=>setEmployee(res.data))
         .catch((error) => console.error(error))
     },[])
 
@@ -48,14 +47,12 @@ export default function UpdateEmployee(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(employee);
     
         axios.patch(
             `http://localhost:8080/api/employee/${
             employeeId}`,employee
         )
-        .then((response) => response.json())
-        .then((data) => setEmployees(data))
+        .then((response) => setEmployees(response.data))
         .catch((error) => {
             console.error(error);
             alert(error.response.data)
