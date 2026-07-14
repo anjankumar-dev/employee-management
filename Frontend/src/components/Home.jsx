@@ -22,9 +22,14 @@ export default function Home(){
             <Header/>
             <div className="home-container">
                 <h1>Employee Management System</h1>
-                <div className="btn-container">
-                    <button className="btn" onClick={() => goToAddEmployee() }>Add Employee</button>
-                    <button className="btn" onClick={() => goToViewEmployees() }>View Employees</button>
+                <div className="container">
+                    <div className="description">
+                        <p>Employee Management System application made for the easy maitanance of employees data. With this application you can manage your employee data easy and efficient.</p>
+                    </div>
+                    <div className="btn-container">
+                        <button className="btn" onClick={() => goToAddEmployee() }>Add Employee</button>
+                        <button className="btn" onClick={() => goToViewEmployees() }>View Employees</button>
+                    </div>
                 </div>
             </div>
 

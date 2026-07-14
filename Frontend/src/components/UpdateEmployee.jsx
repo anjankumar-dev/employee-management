@@ -3,7 +3,7 @@ import "./AddEmployee.css"
 import axios from "axios";
 import Header from "../common-components/Header";
 import Footer from "../common-components/Footer";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function UpdateEmployee(){
 
@@ -25,6 +25,8 @@ export default function UpdateEmployee(){
         createdAt:"",
         updatedAt:""
     });
+
+    const navigate = useNavigate();
 
     const [employees, setEmployees] = useState([]);
 
@@ -58,7 +60,7 @@ export default function UpdateEmployee(){
             alert(error.response.data)
         })
 
-        console.log("submitted for update")
+        navigate('/viewEmployees');
     };
 
 

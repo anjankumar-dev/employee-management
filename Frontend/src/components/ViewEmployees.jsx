@@ -8,19 +8,23 @@ import Header from "../common-components/Header";
 
 
 function ViewEmployees(){
+    
     const [employees, setEmployees] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/employee")
-        .then((res) => res.json())
-        .then((data) => setEmployees(data))
+        axios.get("http://localhost:8080/api/employee")
+        .then((res) => setEmployees(res.data))
         .catch((error) => console.error(error));
-    },[])
+    })
 
     const deleteEmployee = (employeeId) => {
         axios.delete(`http://localhost:8080/api/employee/${employeeId}`)
         .then(()=>{
             window.confirm(`Are you sure! to delete employee with id ${employeeId}`);
+            location.reload();
+            var dlt_btn = document.querySelector(".delete-btn");
+            console.log(dlt_btn);
+
         }).catch((err)=>{
             alert(err);
         })
@@ -29,7 +33,6 @@ function ViewEmployees(){
     const navigate = useNavigate();
 
     const editEmployee = (employeeId) => {
-        alert(`edit button was clicked for ${employeeId}`);
         navigate(`/editEmployee/${employeeId}`);
     }
 

@@ -102,6 +102,11 @@
   background: #d9363e;
 }
 
+.inactive-text{
+  color: red;
+  font-weight: bold;
+}
+
 /* No Data */
 .no-data {
   text-align: center;

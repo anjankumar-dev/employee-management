@@ -14,23 +14,44 @@
   align-items: center;
   padding: 30px;
 }
+h1{
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.container{
+  width: 80vw;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 16px;
+}
+.container .description{
+  padding: 20px;
+  background: #a893be;
+  border-radius: 16px;
+}
+.container .description p{
+  font-size: 18px;
+}
 .btn-container{
     margin-top: 20px;
-    display: grid;
-    grid-template-columns: 1fr, 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 8px;
 }
 .btn-container .btn{
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 16px;
     border: none;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bolder;
     color: #764ba2;
 
 }
 
 .btn-container .btn:hover{
-    background: #667eea;
+    background: #00d9ff;
     transition: all 0.5s;
     color:white;
     cursor: pointer;
